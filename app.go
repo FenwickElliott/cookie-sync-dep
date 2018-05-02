@@ -14,11 +14,15 @@ func main() {
 	}
 
 	http.HandleFunc("/", root)
-
+	http.HandleFunc("/echo", echo)
 	http.ListenAndServe(":"+port, nil)
 }
 
 func root(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("root got")
 	io.WriteString(w, "Root directory")
+}
+
+func echo(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r.URL.Query())
 }
